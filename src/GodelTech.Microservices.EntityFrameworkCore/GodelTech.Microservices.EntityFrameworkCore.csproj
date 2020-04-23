@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>GodelTech.Microservices.EntityFrameworkCore</PackageId>
+    <VersionPrefix>1.0.0-rc.1</VersionPrefix>
+    <Company>Godel Technologies Europe</Company>
+
+    <!-- SonarQube needs this -->
+    <ProjectGuid>{00000000-0000-0000-0000-000000000001}</ProjectGuid>
   </PropertyGroup>
 
 </Project>

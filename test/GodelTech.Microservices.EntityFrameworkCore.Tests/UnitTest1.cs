@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace GodelTech.Microservices.EntityFrameworkCore.Tests
@@ -8,7 +7,7 @@ namespace GodelTech.Microservices.EntityFrameworkCore.Tests
         [Fact]
         public void Test1()
         {
-
+            Assert.True(true);
         }
     }
 }
