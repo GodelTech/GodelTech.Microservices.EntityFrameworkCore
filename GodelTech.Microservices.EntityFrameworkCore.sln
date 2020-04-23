@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelTech.Microservices.EntityFrameworkCore", "src\GodelTech.Microservices.EntityFrameworkCore\GodelTech.Microservices.EntityFrameworkCore.csproj", "{5BCFA47D-E4E8-4962-AF5E-03F9FD7410EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelTech.Microservices.EntityFrameworkCore.Tests", "test\GodelTech.Microservices.EntityFrameworkCore.Tests\GodelTech.Microservices.EntityFrameworkCore.Tests.csproj", "{B3358F74-C5D5-48FC-AAAC-21FCD54A6E27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BCFA47D-E4E8-4962-AF5E-03F9FD7410EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCFA47D-E4E8-4962-AF5E-03F9FD7410EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCFA47D-E4E8-4962-AF5E-03F9FD7410EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCFA47D-E4E8-4962-AF5E-03F9FD7410EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3358F74-C5D5-48FC-AAAC-21FCD54A6E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3358F74-C5D5-48FC-AAAC-21FCD54A6E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3358F74-C5D5-48FC-AAAC-21FCD54A6E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3358F74-C5D5-48FC-AAAC-21FCD54A6E27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EA760D2-0CB6-4E4B-A58B-E968DF8043F4}
+	EndGlobalSection
+EndGlobal
