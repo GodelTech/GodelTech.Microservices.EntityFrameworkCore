@@ -9,12 +9,12 @@ using Microsoft.Extensions.Hosting;
 
 namespace GodelTech.Microservices.EntityFrameworkCore
 {
-    public class EntityFrameworkInitilizer<TDatabaseContext> : MicroserviceInitializerBase
+    public class EntityFrameworkInitializer<TDatabaseContext> : MicroserviceInitializerBase
         where TDatabaseContext : DbContext
     {
         public string ConnectionStringName { get; set; } = "Default";
 
-        public EntityFrameworkInitilizer(IConfiguration configuration)
+        public EntityFrameworkInitializer(IConfiguration configuration)
             : base(configuration)
         {
         }
