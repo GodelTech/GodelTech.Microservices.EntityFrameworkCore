@@ -5,19 +5,11 @@
 
 [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/). This ORM is recommended for new projects. It allows microservice to be run without operating system constraints. E.g. Linux and Windows operating systems can be used. 
 
-**NOTE**: Both ORMs provide the same amount of functionality but EF Core doesn't have host OS constraints.
-
 In order to use EF Core ORM the following initializer must be added to `Startup.CreateInitializers()` method:
 
 ```csharp
 yield return new EntityFrameworkInitializer<WeatherForecastDbContext>(Configuration);
 ```
-
-Repository implementations follow best practices recommended for modern data layers. The following articles must be useful to understand main design decisions:
-
-* [Repository implementation](https://www.infoq.com/articles/repository-implementation-strategies)
-* [Specification pattern](https://enterprisecraftsmanship.com/2016/02/08/specification-pattern-c-implementation/)
-* [Microsoft Example of EF Core repository](https://github.com/dotnet-architecture/eShopOnWeb/blob/b864be9265545fa78ff8fb90a4824dfa7618e676/src/Infrastructure/Data/EfRepository.cs)
 
 ## Quick Start
 
@@ -110,7 +102,7 @@ public class PrecipitationConfiguration : IEntityTypeConfiguration<Precipitation
 }
 ```
 
-## Working with data base. Repository
+## Working with Database. Repository
 
 For CRUD operation `GodeTech.Microservices.EntityFrameworkCore` proposes using pattern Repository.
 
@@ -222,3 +214,29 @@ public override IQueryable<Precipitation> AddEagerFetching(IQueryable<Precipitat
     return query;
 }
 ```
+
+### Stored procedure
+In order to use stored procedure see code below:
+```csharp
+public class PrecipitationQuery : IPrecipitationQuery
+{
+    private readonly WeatherForecastDbContext _dbContext;
+
+    public PrecipitationQuery(WeatherForecastDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public async Task<IList<Precipitation>> GetListAsync()
+    {
+        return await _dbContext.Precipitations.FromSqlRaw("GetPrecipitations").ToListAsync();
+    }
+}
+```
+
+**NOTE** At the service start, all migrations are applied. Database is created if it is not exist.
+
+## Links
+* [Repository implementation](https://www.infoq.com/articles/repository-implementation-strategies)
+* [Specification pattern](https://enterprisecraftsmanship.com/2016/02/08/specification-pattern-c-implementation/)
+* [Microsoft Example of EF Core repository](https://github.com/dotnet-architecture/eShopOnWeb/blob/b864be9265545fa78ff8fb90a4824dfa7618e676/src/Infrastructure/Data/EfRepository.cs)
