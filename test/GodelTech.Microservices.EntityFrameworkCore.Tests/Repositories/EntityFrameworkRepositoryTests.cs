@@ -12,7 +12,7 @@ namespace GodelTech.Microservices.EntityFrameworkCore.Tests.Repositories
     public class EntityFrameworkRepositoryTests : IDisposable
     {
         private readonly TestDbContext _context;
-        private readonly EntityFrameworkRepository<User> _underTest;
+        private readonly Repository<TestDbContext, User> _underTest;
 
         public EntityFrameworkRepositoryTests()
         {
@@ -27,7 +27,7 @@ namespace GodelTech.Microservices.EntityFrameworkCore.Tests.Repositories
             _context.Users.Add(new User { Id = 3, Name = "Stuart" });
             _context.SaveChanges();
 
-            _underTest = new EntityFrameworkRepository<User>(_context);
+            _underTest = new Repository<TestDbContext, User>(_context);
         }
 
         public void Dispose()

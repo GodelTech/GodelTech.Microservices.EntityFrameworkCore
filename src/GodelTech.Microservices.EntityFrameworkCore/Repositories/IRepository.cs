@@ -6,17 +6,18 @@ using GodelTech.Microservices.EntityFrameworkCore.Specifications;
 
 namespace GodelTech.Microservices.EntityFrameworkCore.Repositories
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity>
+        where TEntity : class
     {
-        ValueTask<T> GetByIdAsync(object id, CancellationToken cancellationToken = default(CancellationToken));
-        Task<T> GetAsync(ISpecification<T> spec, CancellationToken cancellationToken = default(CancellationToken));
-        Task<TResult> GetAsync<TResult>(ISpecification<T> spec, Expression<Func<T, TResult>> projection, CancellationToken cancellationToken = default(CancellationToken));
-        Task<T[]> ListAsync(ISpecification<T> spec, int? skip = null, int? take = null, CancellationToken cancellationToken = default(CancellationToken));
-        Task<TResult[]> ListAsync<TResult>(ISpecification<T> spec, Expression<Func<T, TResult>> projection, int? skip = null, int? take = null, CancellationToken cancellationToken = default(CancellationToken));
-        Task AddAsync(T entity, CancellationToken cancellationToken = default(CancellationToken));
-        Task UpdateAsync(T entity, CancellationToken cancellationToken = default(CancellationToken));
-        Task DeleteAsync(T entity, CancellationToken cancellationToken = default(CancellationToken));
-        Task<int> CountAsync(ISpecification<T> spec, CancellationToken cancellationToken = default(CancellationToken));
-        Task<bool> ExistsAsync(ISpecification<T> spec, CancellationToken cancellationToken = default(CancellationToken));
+        ValueTask<TEntity> GetByIdAsync(object id, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TEntity> GetAsync(ISpecification<TEntity> spec, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TResult> GetAsync<TResult>(ISpecification<TEntity> spec, Expression<Func<TEntity, TResult>> projection, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TEntity[]> ListAsync(ISpecification<TEntity> spec, int? skip = null, int? take = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TResult[]> ListAsync<TResult>(ISpecification<TEntity> spec, Expression<Func<TEntity, TResult>> projection, int? skip = null, int? take = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task AddAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
+        Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
+        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> CountAsync(ISpecification<TEntity> spec, CancellationToken cancellationToken = default(CancellationToken));
+        Task<bool> ExistsAsync(ISpecification<TEntity> spec, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

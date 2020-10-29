@@ -8,12 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GodelTech.Microservices.EntityFrameworkCore.Repositories
 {
-    public class EntityFrameworkRepository<TEntity> : IRepository<TEntity>
+    public class Repository<TDbContext, TEntity> : IRepository<TEntity>
+        where TDbContext : DbContext
         where TEntity : class
     {
-        protected DbContext DbContext { get; }
+        protected TDbContext DbContext { get; }
 
-        public EntityFrameworkRepository(DbContext dbContext)
+        public Repository(TDbContext dbContext)
         {
             DbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
@@ -86,6 +87,7 @@ namespace GodelTech.Microservices.EntityFrameworkCore.Repositories
                 throw new ArgumentNullException(nameof(entity));
 
             DbContext.Set<TEntity>().Add(entity);
+
             return DbContext.SaveChangesAsync(cancellationToken);
         }
 
