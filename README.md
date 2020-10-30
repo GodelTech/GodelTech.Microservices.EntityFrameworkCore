@@ -8,7 +8,7 @@
 In order to use EF Core ORM the following initializer must be added to `Startup.CreateInitializers()` method:
 
 ```csharp
-yield return new EntityFrameworkInitializer<WeatherForecastDbContext>(Configuration);
+yield return new DbContextInitializer<WeatherForecastDbContext>(Configuration);
 ```
 
 ## Quick Start
@@ -20,7 +20,7 @@ In order to use GoldeTech entity framework few simple steps are required:
 3. Setup the project as described in the [GodelTech.Microservices.Core](https://github.com/GodelTech/GodelTech.Microservices.Core) manual.
 4. Add congiguration GodelTech Entity Framework Core to `Startup.cs` `CreateInitializers()` method:
 ```csharp
-yield return new EntityFrameworkInitializer<WeatherForecastDbContext>(Configuration);
+yield return new DbContextInitializer<WeatherForecastDbContext>(Configuration, connectionString);
 ```
 where `WeatherForecastDbContext` is a class that was inherited from `DbContext` class
 
@@ -46,6 +46,7 @@ public class WeatherForecastDbContext : DbContext
     public WeatherForecastDbContext(DbContextOptions<WeatherForecastDbContext> contextOptions)
         : base(contextOptions)
     {
+
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -110,18 +111,22 @@ For CRUD operation `GodeTech.Microservices.EntityFrameworkCore` proposes using p
 
 In order to use Repository for get, create, update and delete operetions see the flow below:
 
-1. Declare a property with type `IRepository<T>` where `T` is entity
+1. Add congiguration GodelTech Entity Framework Core to `Startup.cs` `CreateInitializers()` method:
+```csharp
+yield return new RepositoryInitializer<WeatherForecastDbContext, TEntity>(Configuration);
+```
+2. Declare a property with type `IRepository<T>` where `T` is entity
 ```csharp
 private readonly IRepository<Precipitation> _precipitationRepository;
 ```
-2. Resolve dependency in constructor
+3. Resolve dependency in constructor
 ```csharp
 public WeatherForecastController(IRepository<Precipitation> precipitationRepository)
 {
     _precipitationRepository = precipitationRepository;
 }
 ```
-3. Use repository to execute query
+4. Use repository to execute query
 ```csharp
 [HttpGet("{id}")]
 public async Task<IActionResult> Get(int id)
@@ -131,7 +136,7 @@ public async Task<IActionResult> Get(int id)
     return Ok(precipitation);
 }
 ```
-4. Use the same way for Delete operation.
+5. Use the same way for Delete operation.
 ```csharp
 [HttpDelete("{id}")]
 public async Task<IActionResult> Delete(int id)
@@ -143,7 +148,7 @@ public async Task<IActionResult> Delete(int id)
     return Ok();
 }
 ```
-5. For Add and Update operations use samples below.
+6. For Add and Update operations use samples below.
 ```csharp
 await _precipitationRepository.AddAsync(precipitation);
 
