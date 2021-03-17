@@ -43,6 +43,7 @@ stages:
       inputs:
         packageType: sdk
         version: 3.x
+    - task: UseDotNet@2
       displayName: Use .NET Core SDK 5.x
       inputs:
         packageType: sdk
